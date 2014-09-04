@@ -2,27 +2,29 @@ import sys
 
 class SudokuHelper:
 	def __init__(self):
-		self.digits = range(1, 10)
+		self.gridSize = range(0, 9)
+		self.counter = 1
 		self.grid = self.createGrid()
 
 	def createGrid(self):
 		grid = {}
 
-		for i in range(0, 10):
-			grid[i] = self.createSquare()
+		for i in self.gridSize:
+			grid[i] = self.createRow()
 
 		return grid
 
-	def createSquare(self):
-		# Initialize empty square
-		square = {}
+	def createRow(self):
+		# Initialize empty row
+		row = {}
 
-		# Populate square with each digit corresponding to an empty list
-		for digit in self.digits:
-			square[digit-1] = 0
+		# Populate row
+		for col in self.gridSize:
+			row[col] = self.counter
+			self.counter += 1
 
 		# Return template
-		return square
+		return row
 
 	def displayGrid(self):
 		for row in self.grid:
@@ -32,7 +34,7 @@ class SudokuHelper:
 				if val == 0:
 					output += "- "
 				else:
-					output += "%s ", val
+					output += "%s " % val
 			print(output)
 
 sh = SudokuHelper()
