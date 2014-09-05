@@ -51,5 +51,18 @@ class SudokuHelper:
 					output += "%s " % val
 			print(output)
 
+	def searchSquare(self, squareId):
+		possibilities = {}
+		repeat = false
+		numbers = self.getSquare(squareId);
+		missingNumbers = self.getMissingNumbers(numbers);
+
+	def getSquare(self, squareId):
+		return 1;
+
+	def getMissingNumbers(self, numbers):
+		return 1;
+
+
 sh = SudokuHelper()
 sh.displayGrid()
