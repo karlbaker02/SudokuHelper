@@ -62,7 +62,16 @@ class SudokuHelper:
 			rowNumbers = self.getNumbersFromRow(cell, square);
 
 	def getSquare(self, squareId):
-		return 1;
+		startRow = 0 if squareId < 3 else 3 if squareId < 6 else 6
+		startCol = ((squareId % 3) * 3) + 1
+		numbers = []
+		for i in range(startRow, startRow + 3):
+			for j in range(startCol, startCol + 3):
+				val = self.grid[i][j]
+				if val > 0:
+					numbers.append(val)
+
+		return numbers
 
 	def getNumbersFromRow(self, row):
 		numbers = []
@@ -90,9 +99,14 @@ class SudokuHelper:
 sh = SudokuHelper()
 sh.displayGrid()
 numbers = sh.getNumbersFromRow(1)
-print (numbers)
-print (sh.getMissingNumbers(numbers))
-print("Getting numbers from col 0")
-colNumbers = sh.getNumbersFromCol(1)
-print(colNumbers)
-print (sh.getMissingNumbers(colNumbers))
+# print (numbers)
+# print (sh.getMissingNumbers(numbers))
+# print("Getting numbers from col 0")
+# colNumbers = sh.getNumbersFromCol(1)
+# print(colNumbers)
+# print (sh.getMissingNumbers(colNumbers))
+for i in range(0, 9):
+	ls = sh.getSquare(i)
+	print("Square: %i", i + 1)
+	print(ls)
+	print("")
