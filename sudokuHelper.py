@@ -72,6 +72,14 @@ class SudokuHelper:
 				numbers.append(val)
 		return numbers
 
+	def getNumbersFromCol(self, col):
+		numbers = []
+		for i in self.range:
+			val = self.grid[i][col]
+			if val > 0:
+				numbers.append(val)
+		return numbers
+
 	def getMissingNumbers(self, numbers):
 		missingValues = []
 		for i in self.numbers:
@@ -84,3 +92,7 @@ sh.displayGrid()
 numbers = sh.getNumbersFromRow(1)
 print (numbers)
 print (sh.getMissingNumbers(numbers))
+print("Getting numbers from col 0")
+colNumbers = sh.getNumbersFromCol(1)
+print(colNumbers)
+print (sh.getMissingNumbers(colNumbers))
