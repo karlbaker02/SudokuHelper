@@ -3,6 +3,7 @@ import sys
 class SudokuHelper:
 	def __init__(self):
 		self.range = range(0, 9)
+		self.numbers = range(1, 10)
 		self.grid = self.loadGrid()
 
 	def createGrid(self):
@@ -57,12 +58,29 @@ class SudokuHelper:
 		numbers = self.getSquare(squareId);
 		missingNumbers = self.getMissingNumbers(numbers);
 
+		for cell in square:
+			rowNumbers = self.getNumbersFromRow(cell, square);
+
 	def getSquare(self, squareId):
 		return 1;
 
-	def getMissingNumbers(self, numbers):
-		return 1;
+	def getNumbersFromRow(self, row):
+		numbers = []
+		values = self.grid[row].values()
+		for val in values:
+			if val > 0:
+				numbers.append(val)
+		return numbers
 
+	def getMissingNumbers(self, numbers):
+		missingValues = []
+		for i in self.numbers:
+			if i not in numbers:
+				missingValues.append(i);
+		return missingValues
 
 sh = SudokuHelper()
 sh.displayGrid()
+numbers = sh.getNumbersFromRow(1)
+print (numbers)
+print (sh.getMissingNumbers(numbers))
